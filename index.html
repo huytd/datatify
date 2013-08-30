@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Datatify : Simple single class used to display network status change notification (switch between WIFI, 3G and No connection)" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Datatify</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/huytd/datatify">View on GitHub</a>
+
+          <h1 id="project_title">Datatify</h1>
+          <h2 id="project_tagline">Simple single class used to display network status change notification (switch between WIFI, 3G and No connection)</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/huytd/datatify/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/huytd/datatify/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="datatify" class="anchor" href="#datatify"><span class="octicon octicon-link"></span></a>Datatify</h1>
+
+<p>Simple single class used to display network status change notification (using Tony Million's Reachability) with callback function.</p>
+
+<p><img src="http://i189.photobucket.com/albums/z94/huydotnet/screenshot_zpsf96fa29c.png" alt="alt tag"></p>
+
+<ul>
+<li>Easy to integrate</li>
+<li>Easy to customize</li>
+<li>Easy to use in any project</li>
+</ul><h1>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>The installation is very simple, just few steps:</p>
+
+<ol>
+<li>Drag and drop <em>Datatify.h</em> and <em>Datatify.m</em> into your project</li>
+<li>Import <em>SystemConfiguration.framework</em> (required for Reachability) to your project in <strong>Build Phase</strong> -&gt; <strong>Link Binary with Libraries</strong>
+</li>
+<li>Done</li>
+</ol><h1>
+<a name="how-to-use" class="anchor" href="#how-to-use"><span class="octicon octicon-link"></span></a>How to use</h1>
+
+<p>After installed the library, you can start using it.</p>
+
+<p>Firstly, import the library:</p>
+
+<div class="highlight"><pre><span class="cp">#import "Datatify.h"</span>
+</pre></div>
+
+<p>In any View Controller you need to show the notification. Put this line of code in <strong>viewDidLoad</strong> method:</p>
+
+<div class="highlight"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="n">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
+    <span class="p">...</span>
+    <span class="c1">// Initialize the Datatify</span>
+    <span class="p">[[</span><span class="n">Datatify</span> <span class="n">sharedDatatify</span><span class="p">]</span> <span class="n">initWithParent</span><span class="o">:</span><span class="n">self</span><span class="p">.</span><span class="n">view</span><span class="p">];</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>If you want to catch the network connection status change event, just add a callback (by using Block or a separated method)</p>
+
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Datatify</span> <span class="n">sharedDatatify</span><span class="p">]</span> <span class="n">setCallback</span><span class="o">:^</span><span class="p">(</span><span class="kt">int</span> <span class="n">net</span><span class="p">){</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@"Call back %d"</span><span class="p">,</span><span class="n">net</span><span class="p">);</span>
+<span class="p">}];</span>
+</pre></div>
+
+<p>If you want to change the notification display position, use the <strong>setPosition</strong> function</p>
+
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Datatify</span> <span class="n">sharedDatatify</span><span class="p">]</span> <span class="n">setPosition</span><span class="o">:</span><span class="n">TOP_RIGHT</span><span class="p">];</span>
+</pre></div>
+
+<p>There are 9 types of positions:</p>
+
+<ul>
+<li>TOP_LEFT </li>
+<li>TOP_RIGHT</li>
+<li>TOP_CENTER</li>
+<li>CENTER_LEFT</li>
+<li>CENTER_RIGHT</li>
+<li>CENTER_CENTER</li>
+<li>BOTTOM_LEFT</li>
+<li>BOTTOM_RIGHT</li>
+<li>BOTTOM_CENTER</li>
+</ul><h1>
+<a name="customize" class="anchor" href="#customize"><span class="octicon octicon-link"></span></a>Customize</h1>
+
+<p>It's easy to customize the library. </p>
+
+<h3>
+<a name="display-effect" class="anchor" href="#display-effect"><span class="octicon octicon-link"></span></a>Display effect</h3>
+
+<p>If you want to change the notification display effect. you can edit from the line 142 in <em>Datatify.m</em>
+For example, this code will fade in the notification, then wait for 0.5s before fade out and remove it from parent view</p>
+
+<div class="highlight"><pre><span class="p">[</span><span class="n">UIView</span> <span class="n">animateWithDuration</span><span class="o">:</span><span class="mf">0.5</span> <span class="n">animations</span><span class="o">:^</span><span class="p">{</span>
+    <span class="p">[</span><span class="n">vew</span> <span class="n">setAlpha</span><span class="o">:</span><span class="mf">1.0</span><span class="p">];</span> <span class="c1">// Fade in the notification</span>
+<span class="p">}</span> <span class="n">completion</span><span class="o">:^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">UIView</span> <span class="n">animateWithDuration</span><span class="o">:</span><span class="mf">0.5</span> <span class="n">delay</span><span class="o">:</span><span class="mf">0.5</span> <span class="n">options</span><span class="o">:</span><span class="n">UIViewAnimationOptionCurveLinear</span> <span class="n">animations</span><span class="o">:^</span><span class="p">{</span>
+        <span class="p">[</span><span class="n">vew</span> <span class="n">setAlpha</span><span class="o">:</span><span class="mf">0.0</span><span class="p">];</span> <span class="c1">// Then fade out, after 0.5s delay</span>
+    <span class="p">}</span> <span class="n">completion</span><span class="o">:^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">[</span><span class="n">vew</span> <span class="n">removeFromSuperview</span><span class="p">];</span> <span class="c1">// On fade out completed, remove the notification</span>
+    <span class="p">}];</span>
+<span class="p">}];</span>
+</pre></div>
+
+<p>You can replace this by flip or slide animation if you want.</p>
+
+<h3>
+<a name="notification-icon" class="anchor" href="#notification-icon"><span class="octicon octicon-link"></span></a>Notification icon</h3>
+
+<p>In this library, you can see that I don't use any image file but drawing vector graphic. 
+There are 3 function in <em>Datatify.m</em> file, beginning at line 173, the <em>Image Data</em> section: <strong>noIcon</strong>, <strong>threeGIcon</strong> and <strong>wifiIcon</strong>
+I converted the icon in Adobe Illustrator to Objective-C by using <a href="http://drawscri.pt/">Drawscri.pt</a>, it's really cool plugin you must try.
+You can change another icon if you don't like my own one.</p>
+
+<hr><p>Feel free to use Datatify for any purpose or develop it. Don't forget to share us your result.</p>
+
+<p>For any bug report, contact me via Email or Skype.</p>
+
+<p><strong>Email:</strong> <a href="mailto:kingbazoka@gmail.com">kingbazoka@gmail.com</a>
+<strong>Skype:</strong> huydotnet</p>
+
+<p>Happy coding :)</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Datatify maintained by <a href="https://github.com/huytd">huytd</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
