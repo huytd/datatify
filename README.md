@@ -86,9 +86,10 @@ There are 3 function in *Datatify.m* file, beginning at line 173, the *Image Dat
 I converted the icon in Adobe Illustrator to Objective-C by using [Drawscri.pt](http://drawscri.pt/), it's really cool plugin you must try.
 You can change another icon if you don't like my own one.
 
----
-
-Feel free to use Datatify for any purpose or develop it. Don't forget to share us your result.
+Support the project
+===================
+This project is free for use, feel free to use Datatify for any purpose or develop it. Don't forget to share us your result.
+If you like the project and want to support me to create more good things for everybody, you can donate me via Paypal: kingbazoking@gmail.com :">
 
 For any bug report, contact me via Email or Skype.
 
