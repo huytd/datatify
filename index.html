@@ -59,12 +59,12 @@
 
 <p>Firstly, import the library:</p>
 
-<div class="highlight"><pre><span class="cp">#import "Datatify.h"</span>
+<div class="highlight highlight-objc"><pre><span class="cp">#import "Datatify.h"</span>
 </pre></div>
 
 <p>In any View Controller you need to show the notification. Put this line of code in <strong>viewDidLoad</strong> method:</p>
 
-<div class="highlight"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span>
+<div class="highlight highlight-objc"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span>
 <span class="p">{</span>
     <span class="p">[</span><span class="n">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
     <span class="p">...</span>
@@ -76,14 +76,14 @@
 
 <p>If you want to catch the network connection status change event, just add a callback (by using Block or a separated method)</p>
 
-<div class="highlight"><pre><span class="p">[[</span><span class="n">Datatify</span> <span class="n">sharedDatatify</span><span class="p">]</span> <span class="n">setCallback</span><span class="o">:^</span><span class="p">(</span><span class="kt">int</span> <span class="n">net</span><span class="p">){</span>
+<div class="highlight highlight-objc"><pre><span class="p">[[</span><span class="n">Datatify</span> <span class="n">sharedDatatify</span><span class="p">]</span> <span class="n">setCallback</span><span class="o">:^</span><span class="p">(</span><span class="kt">int</span> <span class="n">net</span><span class="p">){</span>
     <span class="n">NSLog</span><span class="p">(</span><span class="s">@"Call back %d"</span><span class="p">,</span><span class="n">net</span><span class="p">);</span>
 <span class="p">}];</span>
 </pre></div>
 
 <p>If you want to change the notification display position, use the <strong>setPosition</strong> function</p>
 
-<div class="highlight"><pre><span class="p">[[</span><span class="n">Datatify</span> <span class="n">sharedDatatify</span><span class="p">]</span> <span class="n">setPosition</span><span class="o">:</span><span class="n">TOP_RIGHT</span><span class="p">];</span>
+<div class="highlight highlight-objc"><pre><span class="p">[[</span><span class="n">Datatify</span> <span class="n">sharedDatatify</span><span class="p">]</span> <span class="n">setPosition</span><span class="o">:</span><span class="n">TOP_RIGHT</span><span class="p">];</span>
 </pre></div>
 
 <p>There are 9 types of positions:</p>
@@ -109,7 +109,7 @@
 <p>If you want to change the notification display effect. you can edit from the line 142 in <em>Datatify.m</em>
 For example, this code will fade in the notification, then wait for 0.5s before fade out and remove it from parent view</p>
 
-<div class="highlight"><pre><span class="p">[</span><span class="n">UIView</span> <span class="n">animateWithDuration</span><span class="o">:</span><span class="mf">0.5</span> <span class="n">animations</span><span class="o">:^</span><span class="p">{</span>
+<div class="highlight highlight-objc"><pre><span class="p">[</span><span class="n">UIView</span> <span class="n">animateWithDuration</span><span class="o">:</span><span class="mf">0.5</span> <span class="n">animations</span><span class="o">:^</span><span class="p">{</span>
     <span class="p">[</span><span class="n">vew</span> <span class="n">setAlpha</span><span class="o">:</span><span class="mf">1.0</span><span class="p">];</span> <span class="c1">// Fade in the notification</span>
 <span class="p">}</span> <span class="n">completion</span><span class="o">:^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">)</span> <span class="p">{</span>
     <span class="p">[</span><span class="n">UIView</span> <span class="n">animateWithDuration</span><span class="o">:</span><span class="mf">0.5</span> <span class="n">delay</span><span class="o">:</span><span class="mf">0.5</span> <span class="n">options</span><span class="o">:</span><span class="n">UIViewAnimationOptionCurveLinear</span> <span class="n">animations</span><span class="o">:^</span><span class="p">{</span>
