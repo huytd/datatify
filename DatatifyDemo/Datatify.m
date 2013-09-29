@@ -50,6 +50,7 @@
     [self addDatatifyToView:currentView type:demoType];
 }
 
+// Pass nil value here if you don't want to show the HUD icon when network changed
 - (void) initWithParent:(UIView*)parentView
 {
     currentView = parentView;
@@ -158,7 +159,12 @@
     else if     (remoteHostStatus == ReachableViaWiFi)  {NSLog(@"wifi"); type = 1; }
     else if     (remoteHostStatus == ReachableViaWWAN)  {NSLog(@"cell"); type = 2; }
     
-    [self addDatatifyToView:currentView type:type];
+    // Only display the indicator if currentView is not null
+    if (currentView != nil)
+    {
+    	[self addDatatifyToView:currentView type:type];
+    }
+    
     if (isUsingCallback)
     {
         callBack(type);
